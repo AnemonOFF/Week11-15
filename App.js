@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text,  Button, ActivityIndicator } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import AuthScreen from './components/auth/authScreen';
-import HomeScreen from './screens/homeScreen';
-import { initDatabase } from './components/database/database';
+import React, { useEffect, useState } from "react";
+import { View, Text, Button, ActivityIndicator } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AuthScreen from "./components/auth/authScreen";
+import HomeScreen from "./screens/homeScreen";
+import { initDatabase } from "./components/database/database";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +19,7 @@ const App = () => {
         await initDatabase();
         setDbInitialized(true);
       } catch (err) {
-        console.error('Initialization error:', err);
+        console.error("Initialization error:", err);
         setError(err);
       }
     };
@@ -29,15 +29,15 @@ const App = () => {
 
   if (error) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text>Database initialization failed</Text>
         <Text>{error.message}</Text>
-        <Button 
-          title="Retry" 
+        <Button
+          title="Retry"
           onPress={() => {
             setError(null);
             setDbInitialized(false);
-          }} 
+          }}
         />
       </View>
     );
@@ -45,7 +45,7 @@ const App = () => {
 
   if (!dbInitialized) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" />
         <Text>Initializing database...</Text>
       </View>
